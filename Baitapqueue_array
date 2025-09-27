@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Queue {
+    int arr[1000];
+    int head, tail, count;
+
+    Queue() {
+        head = 0;
+        tail = -1;
+        count = 0;
+    }
+
+    bool isEmpty() {
+        return count == 0;
+    }
+
+
+    bool enqueue(int x) {
+        if (count == 1000) return false;
+        tail = (tail + 1) % 1000;  
+        arr[tail] = x;
+        count++;
+        return true;
+    }
+
+    int dequeue() {
+        if (isEmpty()) return -999; 
+        int val = arr[head];
+        head = (head + 1) % 1000; 
+        count--;
+        return val;
+    }
+
+    int topp() {
+        if (isEmpty()) return -999;
+        return arr[head];
+    }
+
+    int size() {
+        return count;
+    }
+};
+
+int main() {
+    Queue q;
+
+    cout << "===== TEST QUEUE =====" << endl;
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+
+   
+    cout << "Front: " << q.topp() << endl;
+    cout << "Size: " << q.size() << endl;
+
+    cout << "Dequeue -> " << q.dequeue() << endl;
+    cout << "Dequeue -> " << q.dequeue() << endl;
+
+    cout << "Front sau dequeue: " << q.topp() << endl;
+    cout << "Size hien tai: " << q.size() << endl;
+
+    return 0;
+}
