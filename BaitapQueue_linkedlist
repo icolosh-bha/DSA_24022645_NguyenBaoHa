@@ -60,26 +60,5 @@ struct Queue {
 };
 
 int main() {
-    Queue q;
 
-    q.enqueue(10);
-    q.enqueue(20);
-    q.enqueue(30);
-    q.print();
-
-    cout << "Front: " << q.peek() << endl;
-    cout << "Size: " << q.size() << endl;
-
-    cout << "Dequeue -> " << q.dequeue() << endl;
-    q.print();
-
-    cout << "Dequeue -> " << q.dequeue() << endl;
-    q.print();
-
-    cout << "Dequeue -> " << q.dequeue() << endl;
-    q.print();
-
-    cout << "Dequeue khi rong -> " << q.dequeue() << endl;
-
-    return 0;
 }
