@@ -101,54 +101,10 @@ struct List {
 };
 
 int main() {
-    List l;
+  
 
-    // Test phần danh sách
-    cout << "===== TEST LIST =====" << endl;
-    l.addh(10);
-    l.addh(20);
-    l.addt(5);
-    l.addi(15, 2);  // thêm vào giữa
-    cout << "Danh sach sau khi them: ";
-    l.print();
 
-    l.poph();
-    cout << "Sau khi xoa dau: ";
-    l.print();
 
-    l.popt();
-    cout << "Sau khi xoa cuoi: ";
-    l.print();
 
-    l.addh(30);
-    l.addh(40);
-    cout << "In nguoc: ";
-    l.printReverse();
-
-    cout << "Lay phan tu tai vi tri 2: " << l.get(2) << endl;
-
-    l.popi(1);
-    cout << "Sau khi xoa tai vi tri 1: ";
-    l.print();
-
-    // Test phần stack
-    cout << "\n===== TEST STACK =====" << endl;
-    cout << "Push 3 phan tu 100, 200, 300" << endl;
-    l.push(100);
-    l.push(200);
-    l.push(300);
-
-    cout << "Top hien tai: " << l.top() << endl;
-    cout << "Size hien tai: " << l.size() << endl;
-
-    cout << "Pop: " << l.pop() << endl;
-    cout << "Pop: " << l.pop() << endl;
-    cout << "Top con lai: " << l.top() << endl;
-    cout << "Size con lai: " << l.size() << endl;
-
-    cout << "Pop het stack..." << endl;
-    cout << "Pop: " << l.pop() << endl;
-    cout << "Pop (rong): " << l.pop() << endl;
-
-    return 0;
+    
 }
