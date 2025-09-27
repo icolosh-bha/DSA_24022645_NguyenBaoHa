@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void bubbleSort(int a[], int n) {
+    for(int i = 0; i < n-1; i++) {
+        for(int j = 0; j < n-i-1; j++) {
+            if(a[j] > a[j+1]) 
+                swap(a[j], a[j+1]);
+        }
+    }
+}
+
+void selectionSort(int a[], int n) {
+    for(int i = 0; i < n-1; i++) {
+        int mini = i; // lưu chỉ số
+        for(int j = i+1; j < n; j++) {
+            if(a[j] < a[mini]) mini = j;
+        }
+        swap(a[i], a[mini]);
+    }
+}
+
+void insertionSort(int a[], int n) {
+    for(int i = 1; i < n; i++) {
+        int key = a[i];
+        int j = i - 1;
+        while(j >= 0 && a[j] > key) {
+            a[j+1] = a[j];
+            j--;
+        }
+        a[j+1] = key;
+    }
+}
+
+int main() {
+    int n;
+    cout << "Nhap so phan tu (le): ";
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++) cin >> arr[i];
+
+    // Bubble Sort
+    int b1[n];
+    copy(arr, arr+n, b1);
+    bubbleSort(b1, n);
+    cout << "Median (Bubble Sort): " << b1[n/2] << endl;
+
+    // Selection Sort
+    int b2[n];
+    copy(arr, arr+n, b2);
+    selectionSort(b2, n);
+    cout << "Median (Selection Sort): " << b2[n/2] << endl;
+
+    // Insertion Sort
+    int b3[n];
+    copy(arr, arr+n, b3);
+    insertionSort(b3, n);
+    cout << "Median (Insertion Sort): " << b3[n/2] << endl;
+
+    return 0;
+}
