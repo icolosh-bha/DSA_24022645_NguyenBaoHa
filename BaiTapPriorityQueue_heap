@@ -1,0 +1,90 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct PriorityQueue {
+    int arr[1000];
+    int count;
+
+    PriorityQueue() {
+        count = 0;
+    }
+
+    bool isEmpty() {
+        return count == 0;
+    }
+
+    int size() {
+        return count;
+    }
+
+    int max() {
+        if (isEmpty()) return -999;
+        return arr[0]; 
+    }
+
+    void heapifyUp(int index) {
+        while (index > 0) {
+            int parent = (index - 1) / 2;
+            if (arr[index] > arr[parent]) {
+                swap(arr[index], arr[parent]);
+                index = parent;
+            } else break;
+        }
+    }
+
+    void heapifyDown(int index) {
+        int left, right, largest;
+        while (true) {
+            left = 2 * index + 1;
+            right = 2 * index + 2;
+            largest = index;
+
+            if (left < count && arr[left] > arr[largest]) largest = left;
+            if (right < count && arr[right] > arr[largest]) largest = right;
+
+            if (largest != index) {
+                swap(arr[index], arr[largest]);
+                index = largest;
+            } else break;
+        }
+    }
+
+    bool insert(int value) {
+        if (count == 1000) return false;
+        arr[count] = value;
+        heapifyUp(count);
+        count++;
+        return true;
+    }
+
+    int delMax() {
+        if (isEmpty()) return -999;
+        int maxVal = arr[0];
+        arr[0] = arr[count - 1];
+        count--;
+        heapifyDown(0);
+        return maxVal;
+    }
+};
+
+int main() {
+    PriorityQueue pq;
+
+    cout << "===== TEST HEAP PRIORITY QUEUE =====" << endl;
+    pq.insert(30);
+    pq.insert(10);
+    pq.insert(50);
+    pq.insert(20);
+    pq.insert(40);
+
+    cout << "Max: " << pq.max() << endl;
+    cout << "Size: " << pq.size() << endl;
+
+    cout << "delMax -> " << pq.delMax() << endl;
+    cout << "delMax -> " << pq.delMax() << endl;
+
+    cout << "Max sau khi delMax: " << pq.max() << endl;
+    cout << "Size hien tai: " << pq.size() << endl;
+
+    return 0;
+}
