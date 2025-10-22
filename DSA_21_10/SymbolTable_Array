@@ -1,0 +1,108 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+template <typename Key, typename Value>
+struct SymbolTable {
+    int MAX_SIZE = 100;
+    Key keys[MAX_SIZE];
+    Value values[MAX_SIZE];
+    int count;
+
+    SymbolTable() {
+        count = 0;
+    }
+
+    bool isEmpty() {
+        return count == 0;
+    }
+
+    int size() {
+        return count;
+    }
+
+    bool contains(Key key) {
+        for (int i = 0; i < count; i++) {
+            if (keys[i] == key)
+                return true;
+        }
+        return false;
+    }
+
+    Value* get(Key key) {
+        for (int i = 0; i < count; i++) {
+            if (keys[i] == key)
+                return &values[i];
+        }
+        return nullptr; 
+    }
+
+    void put(Key key, Value value) {
+        for (int i = 0; i < count; i++) {
+            if (keys[i] == key) {
+                values[i] = value;
+                return;
+            }
+        }
+
+        if (count >= MAX_SIZE) {
+            cout << "Bang day, khong the them key moi!\n";
+            return;
+        }
+
+        keys[count] = key;
+        values[count] = value;
+        count++;
+    }
+
+    void deleteKey(Key key) {
+        if (isEmpty()) {
+            cout << "Bang rong, khong the xoa!\n";
+            return;
+        }
+
+        for (int i = 0; i < count; i++) {
+            if (keys[i] == key) {
+                for (int j = i; j < count - 1; j++) {
+                    keys[j] = keys[j + 1];
+                    values[j] = values[j + 1];
+                }
+                count--;
+                return;
+            }
+        }
+        cout << "Khong tim thay key de xoa!\n";
+    }
+
+    void print() {
+        for (int i = 0; i < count; i++) {
+            cout << keys[i] << " -> " << values[i] << endl;
+        }
+    }
+};
+
+int main() {
+    // Symbol table có key là int, value là double
+    SymbolTable<int, double> st;
+
+    st.put(1, 3.14);
+    st.put(2, 2.71);
+    st.put(3, 9.81);
+
+    cout << "Bang Symbol Table hien tai:\n";
+    st.print();
+
+    if (auto val = st.get(2))  // dùng con trỏ để kiểm tra nullptr
+        cout << "\nGia tri cua key 2: " << *val << endl;
+    else
+        cout << "\nKey 2 khong ton tai!\n";
+
+    st.put(2, 6.28);
+    cout << "\nCap nhat key 2 len 6.28:\n";
+    st.print();
+
+    st.deleteKey(1);
+    cout << "\nSau khi xoa key 1:\n";
+    st.print();
+
+    cout << "\nSo phan tu hien co: " << st.size() << endl;
+}
