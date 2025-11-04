@@ -28,13 +28,21 @@ struct SymbolTable {
         return false;
     }
 
-    Value* get(Key key) {
-        for (int i = 0; i < count; i++) {
-            if (keys[i] == key)
-                return &values[i];
-        }
-        return nullptr; 
+    Value* Checkget(Key key) {
+    for (int i = 0; i < count; i++) {
+        if (keys[i] == key)
+            return &values[i];
     }
+    return nullptr; 
+    }
+
+void get(Key key) {
+    Value* p = Checkget(key);
+    if (p == nullptr) {
+        return; 
+    }
+    cout << *p << endl; 
+    }    
 
     void put(Key key, Value value) {
         for (int i = 0; i < count; i++) {
