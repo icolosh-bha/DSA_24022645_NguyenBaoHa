@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+struct HashLP {
+    int size;
+    int* table;
+
+    HashLP(int s) {
+        size = s;
+        table = new int[size];
+        for (int i = 0; i < size; i++) table[i] = -1; // -1 = empty
+    }
+
+    int hashFunction(int key) {
+        return key % size;
+    }
+
+    void insert(int key) {
+        int index = hashFunction(key);
+
+        // Linear probing
+        while (table[index] != -1) {
+            index = (index + 1) % size;
+        }
+        table[index] = key;
+    }
+
+    void display() {
+        for (int i = 0; i < size; i++) {
+            cout << i << ": " << table[i] << endl;
+        }
+    }
+};
+
+int main() {
+    HashLP ht(5);
+    ht.insert(1);
+    ht.insert(6);
+    ht.insert(11);
+    ht.insert(3);
+
+    ht.display();
+}
